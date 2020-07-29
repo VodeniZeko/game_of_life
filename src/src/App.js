@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 const totalBoardRows = 30;
 const totalBoardColumns = 50;
@@ -167,7 +168,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Conway's Game of Life</h1>ls
+        <h1>Conway's Game of Life</h1>
         <BoardGrid
           boardStatus={boardStatus}
           onToggleCellStatus={this.handleToggleCellStatus}
