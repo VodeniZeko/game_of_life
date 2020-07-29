@@ -1,0 +1,32 @@
+.GameOfLife {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.GameOfLife__cells {
+  display: flex;
+  justify-content: center;
+}
+
+.GameOfLife__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.GameOfLife__cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+}
+
+.GameOfLife__cell--alive {
+  background-color: black;
+}
+
+.GameOfLife__cell--dead {
+  background-color: white;
+}
+
+.GameOfLife__startGameButton {
+  margin-bottom: 6px;
+}
