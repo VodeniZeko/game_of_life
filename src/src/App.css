@@ -30,3 +30,15 @@
 .GameOfLife__startGameButton {
   margin-bottom: 6px;
 }
+
+.speed {
+  transform: rotate(180deg);
+}
+
+input[type='range'] {
+  overflow: hidden;
+  -webkit-appearance: none;
+  background-color: #fff;
+  width: 300px;
+  height: 20px;
+}

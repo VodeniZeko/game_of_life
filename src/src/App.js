@@ -39,6 +39,22 @@ const BoardGrid = ({ boardStatus, onToggleCellStatus }) => {
   );
 };
 
+const Slider = ({ speed, onSpeedChange }) => {
+  const handleChange = e => onSpeedChange(e.target.value);
+
+  return (
+    <input
+      type="range"
+      color="black"
+      min="50"
+      max="1000"
+      step="50"
+      value={speed}
+      onChange={handleChange}
+    />
+  );
+};
+
 class App extends Component {
   state = {
     boardStatus: newBoardStatus(),
@@ -71,6 +87,10 @@ class App extends Component {
       boardStatus: newBoardStatus(),
       generation: 0
     });
+  };
+
+  handleSpeedChange = newSpeed => {
+    this.setState({ speed: newSpeed });
   };
 
   handleToggleCellStatus = (r, c) => {
@@ -164,33 +184,68 @@ class App extends Component {
   }
 
   render() {
-    const { boardStatus, generation } = this.state;
+    const { boardStatus, generation, speed } = this.state;
 
     return (
-      <div>
-        <h1>Conway's Game of Life</h1>
-        <BoardGrid
-          boardStatus={boardStatus}
-          onToggleCellStatus={this.handleToggleCellStatus}
-        />
-        <div className="flexRow upperControls">
-          {`Generation: ${generation}`}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "3rem"
+        }}
+      >
+        <div>
+          <BoardGrid
+            boardStatus={boardStatus}
+            onToggleCellStatus={this.handleToggleCellStatus}
+          />
         </div>
-        <div className="flexRow lowerControls">
-          {this.runStopButton()}
-          {/* <button
+        <div style={{ marginLeft: "3rem" }}>
+          <h1>Conway's Game of Life</h1>
+          {/* <div className="flexRow upperControls">
+            {`Generation: ${generation}`}
+          </div> */}
+          <div className="speed">
+            <span>
+              <span style={{ fontSize: "2rem" }}>{" +"}</span>
+              <Slider speed={speed} onSpeedChange={this.handleSpeedChange} />
+              <span style={{ fontSize: "2rem" }}>{" -"}</span>
+            </span>
+          </div>
+          <div className="flexRow lowerControls">
+            {this.runStopButton()}
+            {/* <button
             type="button"
             disabled={isGameRunning}
             onClick={this.handleStep}
           >
             Step
           </button> */}
-          <button type="button" onClick={this.handleClearBoard}>
-            Clear Board
-          </button>
-          <button type="button" onClick={this.handleNewBoard}>
-            New Board
-          </button>
+            <button type="button" onClick={this.handleClearBoard}>
+              Clear Board
+            </button>
+            <button type="button" onClick={this.handleNewBoard}>
+              New Board
+            </button>
+          </div>
+          <div style={{ width: "500px" }}>
+            <ul>
+              <p>RULES</p>
+              <li>
+                Any live cell with fewer than two live neighbors dies (as if by
+                isolation), or with four or more neighbors dies (as if by over
+                population)
+              </li>
+              <li className="second">
+                Any cell with two or three living neighbors survives to the next
+                generation
+              </li>
+              <li className="third">
+                Any dead cell with exactly three living neighbors will be
+                resurrected
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     );
