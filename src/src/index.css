@@ -12,21 +12,13 @@ table {
 }
 
 td {
-  width: 20px;
-  height: 20px;
-  border: 1px solid darkGray;
+  width: 10px;
+  height: 10px;
+  border: .1px solid rgb(73, 73, 165);
 }
 
 .alive {
   background-color: white;
-}
-
-.alive:hover {
-  background-color: green;
-}
-
-.dead:hover {
-  background-color: darkGray;
 }
 
 button {
@@ -42,7 +34,7 @@ button {
 }
 
 button:hover {
-  color: green;
+  color: blue;
 }
 
 .flexRow {
